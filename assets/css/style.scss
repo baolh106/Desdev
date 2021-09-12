@@ -22,9 +22,10 @@
 .header {
     background: url(../img/image-silder.png) no-repeat;
     background-size: cover;
+    position: relative;
 
     .container {
-        max-width: 1167px;
+        max-width: 1170px;
         margin: 0 auto;
         padding: 0 15px;
     }
@@ -73,7 +74,18 @@
         height: 590px;
         @include flex;
         flex-direction: column;
-        position: relative;
+
+        // &::after {
+        //     content: " ";
+        //     display: block;
+        //     position: absolute;
+        //     width: 100%;
+        //     height: 100px;
+        //     background: url(../img/mask-slider.svg) no-repeat center center;
+        //     background-size: cover;
+        //     background-color: transparent;
+        //     margin-top: -99px;
+        // }
 
         h1 {
             margin-top: 106px;
@@ -109,22 +121,22 @@
         }
     }
 
-    &::after {
-        content: " ";
-        display: block;
+    .mask-slider {
         position: absolute;
         width: 100%;
-        height: 100px;
-        background: url(../img/mask-slider.svg) no-repeat center center;
-        background-size: cover;
-        background-color: transparent;
-        margin-top: -99px;
+        bottom: -5px;
+
+        img {
+            width: 100%;
+            background-color: transparent;
+            // display: block;
+        }
     }
 }
 
 .content {
     .container {
-        max-width: 1167px;
+        max-width: 1170px;
         margin: 0 auto;
         padding: 0 15px;
     }
@@ -141,8 +153,8 @@
 
     .project {
         @include flex;
-        padding-bottom: 46px;
         background-color: #ededed;
+        padding: 70px 0;
 
         &__title {
             @include flex;
@@ -150,7 +162,6 @@
             // justify-content: center;
 
             h2 {
-                margin-top: 70px;
                 @include text(36px, 700, 44px, center);
                 letter-spacing: 0.06em;
                 text-transform: uppercase;
@@ -173,11 +184,14 @@
         }
 
         &__group-card {
-            @include flex;
-            flex-wrap: wrap;
+            // @include flex;
+            // flex-wrap: wrap;
+            // justify-content: space-between;
+            // flex-direction: row;
             margin-top: 44px;
-            justify-content: space-between;
-            flex-direction: row;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 24px;
 
             .project__card {
                 padding: 24px;
@@ -185,7 +199,6 @@
                 flex-direction: column;
                 background-color: #ffffff;
                 box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-                margin-bottom: 24px;
 
                 img {
                     margin-bottom: 28px;
@@ -368,6 +381,7 @@
                     width: 664px;
                     height: 240px;
                     img {
+                        object-fit: cover;
                         width: 100%;
                         height: 100%;
                         border: 1px solid rgba(51, 51, 51, 0.3);
@@ -449,50 +463,46 @@
     padding: 70px 0;
 
     .container {
-        max-width: 1167px;
+        max-width: 1170px;
         margin: 0 auto;
         padding: 0 15px;
+    }
+
+    &__content {
+        @include flex;
+        flex-direction: column;
+        // justify-content: space-between;
+        width: 100%;
+    }
+
+    &__sub {
+        @include flex;
+        flex-direction: row;
     }
 
     &__heading {
         @include flex;
         flex-direction: column;
 
-        &::after {
-            content: " ";
-            display: block;
-            width: 100%;
-            height: 1px;
-            background-color: #3333334d;
-            margin: 44px 0;
+        .footer__logo {
+            cursor: pointer;
         }
 
-        .footer__content {
-            @include flex;
-            flex-direction: row;
-            justify-content: space-between;
+        nav {
             width: 100%;
+            margin: 0 136px;
+            ul {
+                li {
+                    list-style: none;
+                    float: left;
+                    margin: 0 22px;
 
-            .footer__logo {
-                cursor: pointer;
-            }
-
-            nav {
-                width: 100%;
-                margin: 0 136px;
-                ul {
-                    li {
-                        list-style: none;
-                        float: left;
-                        margin: 0 22px;
-
-                        a {
-                            text-decoration: none;
-                            color: #333333;
-                            text-transform: uppercase;
-                            @include text(16px, 700, 20px, center);
-                            letter-spacing: 0.12em;
-                        }
+                    a {
+                        text-decoration: none;
+                        color: #333333;
+                        text-transform: uppercase;
+                        @include text(16px, 700, 20px, center);
+                        letter-spacing: 0.12em;
                     }
                 }
             }
@@ -508,35 +518,42 @@
         }
     }
 
+    &__heading::after {
+        content: " ";
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-color: #3333334d;
+        margin: 44px 0;
+    }
+
     &__info {
-        .footer__content {
+        @include flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        a {
+            @include text(14px, 400, 17px, center);
+            letter-spacing: 0.06em;
+            text-decoration: none;
+            color: #333333;
+
+            &:hover {
+                color: rgb(230, 16, 16);
+            }
+        }
+
+        .footer__subinfo {
             @include flex;
             flex-direction: row;
-            justify-content: space-between;
-            width: 100%;
             a {
-                @include text(14px, 400, 17px, center);
-                letter-spacing: 0.06em;
-                text-decoration: none;
-                color: #333333;
-
-                &:hover {
-                    color: rgb(230, 16, 16);
-                }
+                border-right: 1px solid #333333;
+                padding: 0 28px;
             }
 
-            .footer__subinfo {
-                @include flex;
-                flex-direction: row;
-                a {
-                    border-right: 1px solid #333333;
-                    padding: 0 28px;
-                }
-
-                a:nth-child(3) {
-                    border-right: none;
-                    padding-right: 0;
-                }
+            a:nth-child(3) {
+                border-right: none;
+                padding-right: 0;
             }
         }
     }
